@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
+        </div>
+
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+        		<li ng-class="{active : isActive('/signout')}" ng-show="authenticated"><a href="#/products" ng-click="signout()"><i class="fa fa-power-off"></i> Wyloguj</a></li>
+				<li ng-class="{active : isActive('/login')}" ng-hide="authenticated"><a href="#/login">Zaloguj</a></li>
+				<li ng-class="{active : isActive('/register')}" ng-hide="authenticated"><a href="#/register">Zarejestruj</a></li>
+				<li class="hidden-xs" ng-show="authenticated"><p class="navbar-nav navbar-text">Zalogowany jako {{current_user}} </p></li>
+      		</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li ng-class="{active : isActive('/mainPage')}"><a href="#/mainPage"><i class="fa fa-home"></i> Strona Główna</a></li>
+				<li ng-class="{active : isActive('/jamsList')}"><a href="#/jamsList"> Jams</a></li>
+				<li ng-class="{active : isActive('/addJam')}"><a href="#/addJam"> Add Jam</a></li>
+				<li ng-class="{active : isActive('/myProfile')}"><a href="#/myProfile"> My profile</a></li>
+			</ul>
+		</div>
+    </div>
+</nav>

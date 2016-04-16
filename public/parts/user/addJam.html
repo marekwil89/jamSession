@@ -1,0 +1,57 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div>
+				<form ng-submit="addNewJam()" novalidate>
+				
+					<h3>Dodaj Jam Session</h3>
+					<br>
+
+						
+					<input ng-model="jam.title" class="form-control" type="text" placeholder="Tytuł">
+
+					<br>
+
+					<textarea ng-model="jam.descr" class="form-control" type="text" placeholder="Opis"></textarea>
+
+					<div class="page-header">
+							<h4>Date {{quest.startDate | date: 'dd-MM-yyyy'}}</h4>
+						</div>	
+
+					<div class="form-group">
+					    <div style="display:inline-block; min-height:290px;">
+							<uib-datepicker ng-model="jam.date" min-date="minDate" show-weeks="true"></uib-datepicker>
+					    </div>
+		            </div>
+
+
+					<div class="form-group">
+						<label>Time</label>
+						<uib-timepicker ng-model="jam.time" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+					</div>
+
+					<div class="form-group">
+						<label>State</label>
+						<select class="form-control" ng-model="jam.state" >
+							<option value="" disabled selected><strong>--- Choose state ---</strong></option>
+							<option ng-repeat="state in states" value="{{state}}">{{state}}</option>
+						</select>
+					</div>
+
+		            <div class="form-group move-down">
+						<label for="Autocomplete">Location</label>
+        				<input type="text" id="Autocomplete" class="form-control" ng-autocomplete="jam.location" details="details1" options="options1"/>
+					</div>
+
+					
+					<div ng-if="errors" class="alert alert-danger" role="alert">{{errors}}</div>
+					<div ng-if="success" class="alert alert-success" role="alert">{{success}}</div>
+
+
+					<button class="btn btn-lg btn-default btn-block" type="submit">Dodaj</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+

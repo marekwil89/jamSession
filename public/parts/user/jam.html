@@ -1,0 +1,87 @@
+
+<div class="container">
+	<div class="space-between-small"></div>
+	<div class="separate-border" >
+		<span class="text-middle">{{jam.title}}</span>
+	</div>
+	<h4>{{jam.date | date: 'fullDate'}}</h4>
+
+	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+	<h1>{{jam.title}}</h1>
+	<h4>{{jam.date | date: 'fullDate'}}</h4>
+	<hr>
+
+
+	<button ng-click="likeJam()" popover-trigger="outsideClick: outsideClick" uib-popover="{{likeError}}" class="btn btn-default"><i class="fa fa-heart" aria-hidden="true"></i> {{jam.like}}</button>
+	<div class="row">
+		<div class="col-md-6">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Guest</th>
+						<th>Role</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="guest in jam.guests">
+						<td>{{guest._id}}</td>
+						<td><a href="#/userProfile/{{guest.username}}">{{guest.username}}</a></td>
+						<td>{{guest.role}}</td>
+						<td>{{guest.status}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-6">
+			<div ng-repeat="message in jam.messages" class="well">
+				<h2>{{message.username}}</h2>
+				<p>{{message.text}}</p>
+			</div>
+		</div>
+	</div>
+
+	<button ng-click="addGuestToJam()">Dodaj się</button>
+	<button ng-click="guestLoseJam()">Wycofaj się</button>
+</div>
+
+<div class="well">
+	<div class="container-fluid">
+		<div class="container">
+			<form ng-submit="newMessage()" novalidate>
+				<h3>Wyślij wiadomość</h3>
+				<br>
+				
+				<div class="form-group">
+					<textarea ng-model="message.text" class="form-control" rows="5" id="comment"></textarea>
+				</div>
+
+				{{message}}
+
+				<input type="submit" value="Wyślij" class="btn btn-primary pull-right"/>
+				<br>
+				{{errors}}
+			</form>
+		</div>
+	</div>
+</div>
+
+

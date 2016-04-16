@@ -1,0 +1,124 @@
+<div class="container">
+<!-- 	<div class="well">
+		{{myProfileInfo}}
+		<h3>Użytkownik: <small>{{myProfileInfo.username}}</small> utworzony w dniu <small>{{myProfileInfo.created_at | date: 'fullDate'}}</small></h3>
+		<br>
+		<h4>Szczegóły</h4>
+		<ul>
+			<li>Rola w zespole {{myProfileInfo.role}}
+				<select ng-if="editProfile == true" class="form-control" ng-model="myProfileInfo.role" aria-describedby="sizing-addon1" >
+
+					<option value="" disabled selected><strong>--- Wybierz sprzęt ---</strong></option>
+					<option ng-repeat="role in roles" value="{{role}}">{{role}}</option>
+				</select>
+			</li> 
+			<li>Miasto {{myProfileInfo.adress}}
+				<input ng-if="editProfile == true" type="text" class="form-control" placeholder="{{myProfileInfo.adress}}" ng-autocomplete="myProfileInfo.adress" details="details1" options="options1">
+			</li>
+			<li>Telefon {{myProfileInfo.phone}}
+				<input ng-if="editProfile == true" class="form-control" type="test" placeholder="{{myProfileInfo.phone}}" ng-model="myProfileInfo.phone">
+			</li>
+		</ul>
+		<button class="btn btn-danger" ng-click="changeProfileDetails()">Zmień</button>
+		<button ng-if="editProfile == true" class="btn btn-success" ng-click="updateProfile(myProfileInfo)">Zakceptuj</button>
+		
+	</div> -->
+	
+
+
+
+	<div class="space-between"></div>
+
+	<uib-tabset active="active">
+		<uib-tab index="0" heading="Profil">
+			<div class="panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">{{myProfileInfo.username}}</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class=" col-md-12 col-lg-12"> 
+							<table class="table">
+								<tbody>
+								<tr>
+									<td>Zarejestorwany od</td>
+									<td>{{myProfileInfo.created_at | date: 'fullDate'}}</td>
+								</tr>
+								<tr>
+									<td>Rola w zespole:</td>
+									<td ng-if="!editProfile == true">{{myProfileInfo.role}}</td>
+									<td ng-if="editProfile == true">
+										<select  class="form-control" ng-model="myProfileInfo.role" aria-describedby="sizing-addon1">
+											<option value="" disabled selected><strong>--- Wybierz sprzęt ---</strong></option>
+											<option ng-repeat="role in roles" value="{{role}}">{{role}}</option>
+										</select>
+									</td>
+								</tr>
+			
+								<tr>
+									<td>Adres</td>
+									<td ng-if="!editProfile == true">{{myProfileInfo.adress}}</td>
+									<td ng-if="editProfile == true">
+										<input  type="text" class="form-control" placeholder="{{myProfileInfo.adress}}" ng-autocomplete="myProfileInfo.adress" details="details1" options="options1">
+									</td>
+								</tr>
+									<td>Telefon</td>
+									<td ng-if="!editProfile == true">{{myProfileInfo.phone}}</td>
+									<td ng-if="editProfile == true">
+										<input  class="form-control" type="test" placeholder="{{myProfileInfo.phone}}" ng-model="myProfileInfo.phone">
+									</td>
+								</tr>
+								</tbody>
+							</table>
+							<button class="btn btn-danger" ng-click="changeProfileDetails()">Zmień</button>
+							<button ng-if="editProfile == true" class="btn btn-success" ng-click="updateProfile(myProfileInfo)">Zakceptuj</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</uib-tab>
+		<uib-tab index="1" heading="Jamy do których dołączyłeś">
+			<div class="well" ng-repeat="signJam in myProfileSignJams">
+				<a class="jam-header" href="#/jam/{{signJam._id}}">{{signJam.title}}</a>
+			</div>
+		</uib-tab>
+		<uib-tab index="2" heading="Stworzone Jamy">
+			<div class="well" ng-repeat="jam in myProfileJams">
+
+				<h1>{{jam.title}}</h1>
+				<h3>{{jam._id}}</h3>
+				<button ng-click="deleteJam(jam._id)">Delete Jam</button>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>User</th>
+							<th>Role</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="guest in jam.guests">
+							<td>{{guest._id}}</td>
+							<td>{{guest.username}}</td>
+							<td>{{guest.role}}</td>
+							<td>{{guest.status}}</td>
+							<td>
+								<select class="form-control" ng-model="newStatus" ng-change="changeGuestStatus(newStatus, guest._id, jam._id)">
+									<option value="" disabled selected><strong>--- Wybierz Status ---</strong></option>
+									<option  ng-repeat="status in stats" value="{{status}}">{{status}}</option>
+								</select>
+							</td>
+
+							<td><button ng-click="changeGuestStatus(guest, jam)">Change Status</button></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</uib-tab>
+
+	</uib-tabset>
+
+</div>
+
+<!-- ng-init="changeGuestStatus(status, guest._id, jam._id)" -->

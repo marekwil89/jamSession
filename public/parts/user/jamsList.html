@@ -1,0 +1,96 @@
+<div class="container"> -->
+<!-- 		<select class="form-control" ng-model="stateChoose" >
+			<option value="" disabled selected><strong>--- Choose state ---</strong></option>
+			<option ng-click="searchJams()" ng-repeat="state in states" value="{{state}}">{{state}}</option>
+		</select> -->
+
+<!-- <div class="box">
+
+</div> -->
+
+
+
+<!-- 	<div ng-repeat="jam in jams" class="well">
+		
+		
+		<a href="#/jam/{{jam._id}}">Szczegóły</a>
+		<p>{{jam}}</p>
+	</div>
+</div> -->
+
+<div class="space-between-small"></div>
+
+<section class="last-jams">
+	<div class="separate-border">
+		<span class="text-middle">Dodane Jamy</span>
+	</div>
+
+ 
+
+	<div class="row">
+		<article ng-repeat="jam in jams | orderBy: 'date'| startFrom:(currentPage - 1) * pageSize | limitTo: pageSize" class="col-md-4">
+			<div class="well">
+				<a class="jam-header" href="#/jam/{{jam._id}}">{{jam.title}}</a>
+				<p>{{jam.date | date: 'fullDate'}}</p>
+				<span class="label main-color-back">
+					<i class="fa fa-heart" aria-hidden="true"></i>
+					{{jam.like}}
+				</span>
+				<span class="label sec-color-back">
+					<i class="fa fa-users" aria-hidden="true"></i>
+					{{jam.guests.length}}
+				</span>
+			</div>
+		</article>
+		
+	</div>
+	<uib-pagination total-items="jams.length" ng-model="currentPage" items-per-page="pageSize"></uib-pagination>
+</section>
+
+
+<!-- <section class="jamsList">
+	<div class="container">
+		<div class="row">
+			<article class="col-md-3" ng-repeat="jam in jams">
+				
+					<main class="Jambox">
+						<h4>{{jam.date | date: 'fullDate'}}</h4>
+						<p><i class="fa fa-map-marker"></i> {{jam.location}}</p>
+						<h3>{{jam.title}}</h3>
+						<p>{{jam.like}} i {{jam.disLike}}</p>
+
+						<p>{{jam.descr | limitTo: 70}}...</p>
+						<a class="btn btn-default" href="#/jam/{{jam._id}}">Więcej</a>
+					</main>
+
+			</article>
+		</div>
+	</div>
+</section> -->
+
+
+<!-- 
+<section class="row">
+	<main class="col-md-8">
+		<article ng-repeat="jam in jams">
+			<header>
+				
+				<h3>{{jam.title}}</h3>
+				<h4>{{jam.date | date: 'fullDate'}}</h4>
+			</header>
+			<div>
+				<p>{{jam.descr | limitTo: 70}}...</p>
+				<p><i class="fa fa-map-marker"></i> {{jam.location}}</p>
+				<p>{{jam.guests.length}}/{{jam.guestLimit}}</p>
+				<p>Organizuje {{jam.org.username}}</p>
+			</div>
+			<footer>
+				<a class="btn btn-default" href="#/jam/{{jam._id}}">Szczegóły</a>
+				<hr>
+			</footer>
+		</article>
+	</main>
+	<aside class="col-md-4">
+		Jakiś boczny element
+	</aside>
+</section>

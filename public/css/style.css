@@ -1,0 +1,124 @@
+.main-color
+{
+    color: #ff3333;
+}
+
+.sec-color
+{
+    color: #703d3d;
+}
+
+
+body
+{
+ margin: 0;
+ padding: 0;
+}
+
+.separate-border
+{
+    margin-bottom: 100px;
+    width: 100%;
+    height: 20px; 
+    border-bottom: 1px solid black; 
+    text-align: center
+}
+
+.text-middle
+{
+    font-size: 33px; 
+    background-color: #F3F5F6; 
+    padding: 0 10px;
+}
+
+.space-between
+{
+    margin-bottom: 200px;
+}
+
+.space-between-small
+{
+    margin-bottom: 50px;
+}
+
+.register-section
+{
+    padding-top: 7%;
+}
+
+
+.popover  {
+    background: #660000!important;
+    color: #cccccc;
+}
+
+.popover.bottom .arrow:after {
+  border-bottom-color: #001933;
+}
+
+.parallax-box
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100vh;
+    background-image: url('../img/back.jpg');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.logo
+{
+    font-family: 'Kanit', sans-serif;
+    font-size: 70px;
+    color: #cccccc;
+}
+
+
+.panel-heading
+{
+    color: #cccccc;
+    background: #660000;
+}
+
+.icon-box
+{
+    margin-top: 15%;
+}
+
+div.well
+{
+    text-align: center;
+    background: white;
+    border: none;
+    box-shadow: none;
+}
+
+.jam-header
+{
+    font-size: 30px;
+    color: #333333;
+    transition: color 1s;
+}
+
+.jam-header:hover
+{
+    text-decoration: none;
+    color: #ff3333;
+}
+
+.main-color-back
+{
+    background: #ff3333;
+}
+
+.sec-color-back
+{
+    background: #45668e;
+}
+
+
