@@ -1,41 +1,44 @@
 
 
 
-<main>
+<main class="">
 	
 
 
 	<header class="parallax-box">
-		<div class="back-birds"></div>
-		<div class="logo">
-			<span class="main-color">Jam</span>Se<span><i class="fa fa-bolt" aria-hidden="true"></i><i class="fa fa-bolt" aria-hidden="true"></i></span>ion
-		</div>
+
+		<h1 class="logo"><span class="main-color">Jam</span>Session</h1>
+		<em class="text-under-logo">Miejsce gdzie znajdziesz muzyków do wspólnej gry</em>
+
+
+	<!-- 	<a href="#/jamsList" class="btn btn-main">Lista Jamów</a> -->
+		<a class="arrow-down" ng-click="gotoElement('options')"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
 	</header>
 
-	<div class="container">
 
-		<div class="space-between"></div>
 
-		<section class="photo-links-box">
-			<div class="separate-border" >
-				<span class="text-middle">Your options</span>
+	<div  class="container">
+		<div id="options" class="space-between"></div>
+		<section  class="photo-links-box">
+			<div  class="separate-border" >
+				<span class="text-middle">Twoje opcje</span>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
+				<a href="#/jamsList"><figure class="col-sm-4">
 					<div class="photo-link1">
-						<span>Create</span>
+						<span>Lista</span>
 					</div>
-				</div>
-				<div class="col-md-4">
+				</figure></a>
+				<a href="#/register"><figure class="col-sm-4">
 					<div class="photo-link2">
-						<span>Create</span>
-					</div>					
-				</div>
-				<div class="col-md-4">
+						<span>Zarejestruj</span>
+					</div>			
+				</figure></a>	
+				<a href="#/addJam"><figure class="col-sm-4">
 					<div class="photo-link3">
-						<span>Create</span>
+						<span>Stwórz</span>
 					</div>					
-				</div>
+				</figure></a>
 			</div>
 
 		</section>
@@ -45,14 +48,17 @@
 
 		<section class="last-jams">
 			<div class="separate-border">
-				<span class="text-middle">Najbliższe Jamy</span>
+				<span class="text-middle">Ten tydzień</span>
 			</div>
 
 			<div class="row">
 				<article ng-repeat="jam in lastJams | limitTo: 6 | orderBy: 'date'" class="col-md-4">
 					<div class="well">
+						<hr>
+						<p>{{jam.state}}</p>
 						<a class="jam-header" href="#/jam/{{jam._id}}">{{jam.title}}</a>
 						<p>{{jam.date | date: 'fullDate'}}</p>
+
 						<span class="label main-color-back">
 							<i class="fa fa-heart" aria-hidden="true"></i>
 							{{jam.like}}
@@ -61,6 +67,7 @@
 							<i class="fa fa-users" aria-hidden="true"></i>
 							{{jam.guests.length}}
 						</span>
+						
 					</div>
 				</article>
 			</div>

@@ -14,6 +14,14 @@ angular.module('authModule', []).controller('authController', function($scope, $
 
 
 
+    var shortenEmail = function(userEmail){
+  		console.log('dupa')
+        var email = userEmail
+        var login = email.substring(0, email.lastIndexOf("@"));
+        var loginIsLength = login.length
+
+        return loginIsLength
+    }
 
 
 	$scope.login = function(){
@@ -24,16 +32,11 @@ angular.module('authModule', []).controller('authController', function($scope, $
 		}
 		$http.post('/auth/login', $scope.user).success(function(data){
 			if(data.state == 'success'){
-
-
 				$rootScope.authenticated = true;
-
-
 				$rootScope.admin = data.user.admin;
-	
-
 				$rootScope.current_user =  data.user.username;
-				$location.path('/myProfile');
+				$location.path('/');
+				$rootScope.limit = shortenEmail($rootScope.current_user);
 			}
 			else{
 				$scope.errors = data.message;
@@ -76,6 +79,7 @@ angular.module('authModule', []).controller('authController', function($scope, $
 				$rootScope.adress = data.user.adress;
 				$rootScope.current_user = data.user.username;
 				$location.path('/');
+				$rootScope.limit = shortenEmail($rootScope.current_user);
 			}
 			else{
 				$scope.errors = data.message;
@@ -101,7 +105,7 @@ angular.module('authModule', []).controller('authController', function($scope, $
 	}
 
 	var userLength = function(){
-		if($scope.user.username.length >= 30 || $scope.user.username.length <= 5 || $scope.user.password.length >= 30 || $scope.user.password.length <= 5)
+		if($scope.user.username.length > 30 || $scope.user.username.length < 5 || $scope.user.password.length > 30 || $scope.user.password.length < 5)
 		{
 			return true
 		}
@@ -112,8 +116,6 @@ angular.module('authModule', []).controller('authController', function($scope, $
 		{
 			return true
 		}
-
-
 	}
 
 

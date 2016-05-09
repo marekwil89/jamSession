@@ -1,6 +1,6 @@
-var dyrektywki = angular.module('dyrektywki', []);
+var directives = angular.module('directives', []);
 
-dyrektywki.directive('naviadmin', function(){
+directives.directive('naviadmin', function(){
 	return {
 		restrict : 'E',
 		templateUrl: 'parts/admin/naviadmin.html',
@@ -8,7 +8,7 @@ dyrektywki.directive('naviadmin', function(){
 	};
 });
 
-dyrektywki.directive('naviuser', function(){
+directives.directive('naviuser', function(){
 	return {
 		restrict : 'E',
 		templateUrl: 'parts/user/naviuser.html',
@@ -16,7 +16,7 @@ dyrektywki.directive('naviuser', function(){
 	};
 });
 
-dyrektywki.directive('logo', function(){
+directives.directive('logo', function(){
     return {
         restrict : 'E',
         templateUrl: 'parts/user/logo.html',
@@ -24,7 +24,7 @@ dyrektywki.directive('logo', function(){
     };
 });
 
-dyrektywki.directive('footer', function(){
+directives.directive('footer', function(){
     return {
         restrict : 'E',
         templateUrl: 'parts/user/footer.html'
@@ -34,7 +34,7 @@ dyrektywki.directive('footer', function(){
 
 
 
-dyrektywki.directive('ngAutocomplete', function($parse) {
+directives.directive('ngAutocomplete', function($parse) {
     return {
 
       scope: {

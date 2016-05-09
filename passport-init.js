@@ -66,7 +66,7 @@ module.exports = function(passport){
 			console.log('to nie jest email')
 			return done(null, false)
 		}
-		if(username.length >= 30 || username.length <= 5 || password.length >= 30 || password.length <=5)
+		if(username.length > 30 || username.length < 5 || password.length > 30 || password.length <5)
 		{
 			console.log('Pole email i hasło musi zawierać od 5 do 30 znaków')
 			return done(null, false);

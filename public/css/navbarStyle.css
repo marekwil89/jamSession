@@ -1,4 +1,55 @@
-nav.navbar
-{
-	border: none;
+div#custom-bootstrap-menu.navbar-default .navbar-brand {
+    color: rgba(255, 255, 255, 1);
 }
+div#custom-bootstrap-menu.navbar-default {
+    font-size: 13px;
+    background: #222222;
+    border-width: 0px;
+    border-radius: 0px;
+
+}
+div#custom-bootstrap-menu.navbar-default .navbar-nav>li>a {
+    color: rgba(255, 255, 255, 1);
+    background: #222222;
+        text-shadow: none;
+}
+
+
+div#custom-bootstrap-menu.navbar-default .navbar-nav>li>a:hover,
+div#custom-bootstrap-menu.navbar-default .navbar-nav>li>a:focus {
+    color: #ff3333;
+    text-shadow: none;
+    border: none;
+}
+div#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a,
+div#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:hover,
+div#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:focus {
+    color: #ff3333;
+
+
+}
+div#custom-bootstrap-menu.navbar-default .navbar-toggle {
+    border: #000000;
+}
+div#custom-bootstrap-menu.navbar-default .navbar-toggle:hover,
+div#custom-bootstrap-menu.navbar-default .navbar-toggle:focus {
+    background: #000000;
+}
+div#custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
+    background: #000000;
+}
+div#custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
+div#custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
+    background: #2b1e1e;
+}
+
+div.navbar-default .navbar-text {
+    color: white;
+}
+
+div.navbar-default .navbar-header a
+{
+    text-shadow: none;
+}
+
+

@@ -1,38 +1,18 @@
-angular.module('myProfileModule', []).controller('myProfileCtrl', function($scope, $http, $rootScope, $location, $routeParams, $anchorScroll){
+angular.module('myProfileModule', []).controller('myProfileCtrl', function($scope, $http, $rootScope, $location, $routeParams, $timeout){
 
-
-
-
-    $scope.stats = ['chce iść', 'zrezygnował', 'zakceptowany', 'odrzucony'];
-
-	var getMyProfileInfo = function(){
-        $http.get( 'user/getMyProfileInfo').success( function( data ){        
-            $scope.myProfileInfo = data;
-        })     
-    }
-
-    var getMyProfileJams = function(){
-    	$http.get('user/getMyProfileJams').success(function(data){
-    		$scope.myProfileJams = data    	
-    	})
-    }
-
-    var getUserSignJams = function(){
-        $http.get('user/getUserSignJams').success(function(data){
-            $scope.myProfileSignJams = data
-        })
-    }
-
-    $scope.deleteJam = function(id){
-        console.log(id)
-        var jam = {
-            id : id
+    var redirectLogOut = function(){
+        if($rootScope.authenticated == false && !$rootScope.current_user){
+            $location.path('/mainPage')
         }
-        $http.put('user/deleteJam', jam).success(function(data){
-  
-        })
     }
 
+    redirectLogOut()
+
+
+
+    $scope.editProfile = false
+
+    $scope.stats = ['chce iść',  'zakceptowany', 'odrzucony'];
 
     $scope.options1 = {
         country: 'pl',
@@ -41,7 +21,56 @@ angular.module('myProfileModule', []).controller('myProfileCtrl', function($scop
     $scope.details1 = '';
     $scope.roles = ['Main Guitar', 'Vocal', 'Percussion', 'Bass'];
 
-    $scope.editProfile = false
+
+
+    // $rootScope.shortenEmail = function(userEmail){
+    //     var email = userEmail
+    //     var login = email.substring(0, email.lastIndexOf("@"));
+    //     var loginIsLength = login.length
+    //     return loginIsLength
+    // }
+
+
+
+	var getMyProfileInfo = function(){
+        $http.get( 'get/getMyProfileInfo').success( function( data ){        
+            $scope.myProfileInfo = data;
+
+            // $rootScope.limit = $rootScope.shortenEmail($scope.myProfileInfo.username)
+
+        }).error(function(errors){
+            $scope.errors = errors
+        })
+    }
+
+
+
+
+    var getMyProfileJams = function(){
+    	$http.get('get/getMyProfileJams').success(function(data){
+    		$scope.myProfileJams = data    	
+    	})
+    }
+
+    var getUserSignJams = function(){
+        $http.get('get/getUserSignJams').success(function(data){
+            $scope.myProfileSignJams = data
+        })
+    }
+
+    $scope.deleteJam = function(id){
+        if( !confirm('Czy napewno chcesz usunąć jam ?'))
+            return false;
+        var jam = {
+            id : id
+        }
+        $http.put('put/deleteJam', jam).success(function(data){
+            getMyProfileJams()
+        })
+    }
+
+
+
 
     $scope.changeProfileDetails = function(){
 
@@ -55,19 +84,20 @@ angular.module('myProfileModule', []).controller('myProfileCtrl', function($scop
 
     $scope.updateProfile = function(myProfileInfo){
 
-        var changes = {
+        var updatedProfile = {
             id : myProfileInfo._id,
             role : myProfileInfo.role,
             adress : myProfileInfo.adress,
             phone : myProfileInfo.phone
         }
 
-        $http.put('user/updateProfile', changes).success(function(data){
+        $http.put('put/updateProfile', updatedProfile).success(function(data){
             getMyProfileInfo()
             $scope.editProfile = false;
-        }).
-        error(function(data){
-
+            $scope.errors = ''
+        }).error(function(data){
+            $scope.errors = data
+            $scope.editProfile = true
         })
     }
 
@@ -78,7 +108,7 @@ angular.module('myProfileModule', []).controller('myProfileCtrl', function($scop
             guestId: guestId,
             jamId: jamId
         }
-    	$http.put('user/changeGuestStatus', guest).success(function(data){
+    	$http.put('put/changeGuestStatus', guest).success(function(data){
             getMyProfileInfo()
             getMyProfileJams() 
     	})

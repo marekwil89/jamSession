@@ -11,9 +11,9 @@ var passport = require('passport');
 
 //initialize mongoose schemas
 require('./models/models');
-var user = require('./routes/user.js');
-var jam = require('./routes/jam.js');
+var get = require('./routes/get.js');
 var add = require('./routes/add.js');
+var put = require('./routes/put.js');
 
 var authenticate = require('./routes/authenticate')(passport);
 var mongoose = require('mongoose');                         //add for Mongo support
@@ -41,14 +41,14 @@ app.use(passport.session());
 
 
 app.use('/auth', authenticate);
-app.use('/user', user);
-app.use('/jam', jam);
+app.use('/get', get);
 app.use('/add', add);
+app.use('/put', put);
 
 
 
 var initPassport = require('./passport-init');
 initPassport(passport);
 
-app.listen(7900);
-console.log('7900');
+app.listen(8003);
+console.log('8003');

@@ -1,19 +1,40 @@
 var app = angular.module('app', ['userProfileModule',
+								 'editJamModule',
  								 'ui.bootstrap' , 
  								 'myProfileModule', 
  								 'mainPageModule', 
- 								 'textAngular', 
  								 'jamModule',
  								 'jamsModule', 
  								 'addJamModule', 
  								 'naviModule', 
  								 'ngRoute', 
  								 'authModule', 
- 								 'serwiski', 
- 								 'dyrektywki', 
+ 								 'services', 
+ 								 'directives', 
  								 'ngAnimate',
- 								 'filters'
- 								 ]).run(function($rootScope, $http, $location) {
+ 								 'filters',
+ 								 'myNotificationsModule',
+ 								 'ui.bootstrap.datetimepicker'
+ 								 ]).run(function($rootScope, $http, $location, $interval) {
+
+
+
+
+ 	$rootScope.notifyLength = 0
+
+	var getNotificationLength = function(){
+          	$interval(function(){
+	            $http.get( 'get/notificationLength' ).success( function( data ){  
+	            	console.log(data)      
+	            	$rootScope.notifyLength = data.length
+	        	})
+          	}, 4000)
+	}
+
+
+
+	
+
 
 	$rootScope.signout = function(){
     	$http.get('auth/signout');
@@ -25,11 +46,12 @@ var app = angular.module('app', ['userProfileModule',
 
 
 	$rootScope.isUserLogin = function(){
-		$http.get('user/getLoginUser').success(function(data){
-			console.log('zalogowany')
+		$http.get('get/getLoginUser').success(function(data){
 			$rootScope.authenticated = true;
 	    	$rootScope.admin = data.admin;
 	    	$rootScope.current_user = data.username;
+
+
 		}).error(function(data){
 			$rootScope.signout()
 			$rootScope.authenticated = false;
@@ -38,8 +60,11 @@ var app = angular.module('app', ['userProfileModule',
         });
 	}
 
+
+
 	$rootScope.isUserLogin()
 
+	getNotificationLength()
 
 
 
@@ -50,7 +75,7 @@ var app = angular.module('app', ['userProfileModule',
 app.config(function($routeProvider, $httpProvider){
 
 	$routeProvider.otherwise({
-        redirectTo: '/jamsList'
+        redirectTo: '/mainPage'
     });
 
 	$routeProvider.when('/jamsList', {
@@ -66,6 +91,17 @@ app.config(function($routeProvider, $httpProvider){
 	$routeProvider.when('/myProfile', {
 		templateUrl: 'parts/user/myProfile.html',
 		controller: 'myProfileCtrl'
+	});
+
+	$routeProvider.when('/myNotifications', {
+		templateUrl: 'parts/user/myNotifications.html',
+		controller: 'myNotificationsCtrl'
+	});
+
+
+	$routeProvider.when('/editJam/:id', {
+		templateUrl: 'parts/user/editJam.html',
+		controller: 'editJamCtrl'
 	});
 
 	$routeProvider.when('/userProfile/:username', {

@@ -5,14 +5,101 @@
 
 .sec-color
 {
-    color: #703d3d;
+    color: #1B78B2;
 }
 
 
-body
+.main-color-back
 {
- margin: 0;
- padding: 0;
+    background: #ff3333;
+}
+
+.sec-color-back
+{
+    background: #1B78B2;
+}
+
+textarea {
+    resize: none;
+}
+
+
+button.btn-sec
+{
+    background: #1B78B2;
+    color: white;
+}
+
+button.btn-sec:hover
+{
+    background: #1485CC;
+    color: white;
+}
+
+a.btn-sec
+{
+    background: #1B78B2;
+    color: white;
+}
+
+a.btn-sec:hover
+{
+    background: #1485CC;
+    color: white;
+}
+
+
+button.btn-main
+{
+    background: #ff3333;
+    color: white;
+}
+
+button.btn-main:hover
+{
+    background: #B21212;
+    color: white;
+}
+
+a.btn-main
+{
+    background: #ff3333;
+    color: white;
+}
+
+a.btn-main:hover
+{
+    background: #B21212;
+    color: white;
+}
+
+*
+{
+    font-family: 'Play', sans-serif;
+    margin: 0;
+    padding: 0;
+
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+
+.alert-danger
+{
+    margin-top: 7%;
 }
 
 .separate-border
@@ -27,23 +114,18 @@ body
 .text-middle
 {
     font-size: 33px; 
-    background-color: #F3F5F6; 
+    background-color: white; 
     padding: 0 10px;
 }
 
 .space-between
 {
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 }
 
 .space-between-small
 {
     margin-bottom: 50px;
-}
-
-.register-section
-{
-    padding-top: 7%;
 }
 
 
@@ -56,27 +138,7 @@ body
   border-bottom-color: #001933;
 }
 
-.parallax-box
-{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    height: 100vh;
-    background-image: url('../img/back.jpg');
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: 100% 100%;
-    background-attachment: fixed;
-    overflow: hidden;
-}
 
-.logo
-{
-    font-family: 'Kanit', sans-serif;
-    font-size: 70px;
-    color: #cccccc;
-}
 
 
 .panel-heading
@@ -96,29 +158,6 @@ div.well
     background: white;
     border: none;
     box-shadow: none;
+    height: 250px;
 }
-
-.jam-header
-{
-    font-size: 30px;
-    color: #333333;
-    transition: color 1s;
-}
-
-.jam-header:hover
-{
-    text-decoration: none;
-    color: #ff3333;
-}
-
-.main-color-back
-{
-    background: #ff3333;
-}
-
-.sec-color-back
-{
-    background: #45668e;
-}
-
 

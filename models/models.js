@@ -9,6 +9,15 @@ var userSchema = new mongoose.Schema({
 	adress: String,
 	phone: String,
 	admin: Boolean,
+	notifications: [{
+		username: String,
+		text : String,
+		jamTitle: String,
+		created_date : {type: Date, default: Date.now},
+		read: Boolean,
+		class: String,
+		jamId: String
+	}],
 	created_at: {type: Date, default: Date.now}
 })
 
@@ -18,7 +27,6 @@ var jamSchema = new mongoose.Schema({
 	title: String,
 	descr: String,
 	date: {type: Date},
-	time: {type: Date},
 	state: String,
 	location: String,
 	messages: [{
@@ -35,27 +43,10 @@ var jamSchema = new mongoose.Schema({
 	guestsRate: [{
 		username: String
 	}],
-	like: Number,
-	dislike: Number
+	like: Number
+	// dislike: Number
 })
-// var expeditionSchema = new mongoose.Schema({
-// 	title: String,
-// 	text: String,
-// 	adress: String,
-// 	category: String,
-// 	created_at: {type: Date, default: Date.now},
-// 	comments: [{
-// 		username: String,
-// 		text: String,
-// 		admin: Boolean,
-// 		created_at: {type: Date, default: Date.now}
-// 	}],
-// 	likers: [{
-// 		username: String
-// 	}],
-// 	like: Number,
-// 	dislike: Number
-// });
+
 
 
 

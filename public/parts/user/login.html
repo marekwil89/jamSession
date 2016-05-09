@@ -1,23 +1,34 @@
+<div class="space-between"></div>
+
 <section class="container">
-	<div class="col-md-6 col-md-offset-3">
-		<form class="form-auth" ng-submit="login()" novalidate>
-			<h2>Logowanie</h2>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<form class="form-auth" ng-submit="login()" novalidate>
+				<div class="separate-border" >
+					<span class="text-middle">Logowanie</span>
+				</div>
 
-			<div class="input-group">
-			  <span class="input-group-addon"><i class="fa fa-user"></i></span>
-			  <input ng-model="user.username" type="username" class="form-control" placeholder="Nazwa użytkownika" aria-describedby="sizing-addon1">
-			</div> 
+				<div class="input-group">
+				  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+				  <input ng-model="user.username" type="username" class="form-control" placeholder="Nazwa użytkownika" aria-describedby="sizing-addon1">
+				</div> 
 
-			<br>
+				<br>
 
-			<div class="input-group">
-			  <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
-			  <input ng-model="user.password" type="password" class="form-control" placeholder="Twoje hasło" aria-describedby="sizing-addon1">
-			</div>
-			
-			<br>
-			<div ng-if="errors" class="alert alert-danger" role="alert">{{errors}}</div>
-			<input type="submit" value="Zaloguj" class="btn pull-right" />
-		</form>
+				<div class="input-group">
+				  <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
+				  <input ng-model="user.password" type="password" class="form-control" placeholder="Twoje hasło" aria-describedby="sizing-addon1">
+				</div>
+				
+				
+				<div ng-if="errors" class="alert alert-danger" role="alert">{{errors}}</div>
+				<br>
+				<input type="submit" value="Zaloguj" class="btn pull-right" />
+			</form>
+		</div>		
 	</div>
+
 </section>
+
+
+

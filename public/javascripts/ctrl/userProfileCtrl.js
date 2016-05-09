@@ -3,7 +3,7 @@ angular.module('userProfileModule', []).controller('userProfileCtrl', function($
 
 
     var getProfileInfo = function(){
-        $http.get('user/getProfileInfo/' + $routeParams.username).success(function(data){
+        $http.get('get/getProfileInfo/' + $routeParams.username).success(function(data){
                 $scope.userProfile = data;
             })        
     } 

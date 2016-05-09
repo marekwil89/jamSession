@@ -1,0 +1,81 @@
+header.myProfile-box
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    text-align: center;
+    background-image: url('../img/3.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+	min-height: 350px;
+}
+
+.myProfile-box h1
+{
+    text-transform: uppercase;
+        border-radius: 2%;
+    border: solid 7px white;
+    padding: 7px 7px;
+    color: white;
+    font-weight: 700;
+    font-size: 55px;
+}
+
+@media only screen and (max-width: 690px) {
+    .myProfile-box h1
+    {
+        font-size: 35px;
+    }
+    header.myProfile-box
+    {
+
+        min-height: 300px;
+    }
+
+}
+
+@media only screen and (max-width: 440px) {
+    .myProfile-box h1
+    {
+        font-size: 18px;
+        border: solid 4px white;
+    }
+    header.myProfile-box
+    {
+        min-height: 250px;
+    }
+
+}
+
+
+
+
+
+
+
+.nav-tabs > li > a
+{
+    color: #111111;
+    border-radius: none;
+    border: none;
+
+}
+
+
+.nav-tabs > li > a:hover, .nav-tabs > li > a:focus
+{
+    color: #ff3333;
+
+}
+
+
+.nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
+    text-decoration: none;
+    background: #cccc2e;
+
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #ff3333;
+}
