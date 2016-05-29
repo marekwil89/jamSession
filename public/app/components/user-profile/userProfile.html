@@ -1,0 +1,37 @@
+
+<section class="myProfile">
+	
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-8 col-md-offset-2">
+				<div class="separate-border" >
+					<span class="text-middle header-font">{{userProfile.username}}</span>
+				</div>
+
+				<div class="space-between-small"></div>
+
+				<div class="page-header">
+					<h4 class="label-header">Zarejestrowany</h4>
+				</div>
+				<p>{{userProfile.created_at | date : 'shortTime'}}, {{userProfile.created_at | date: 'fullDate'}}</p>
+				<div class="page-header">
+					<h4 class="label-header">Sprzęt</h4>
+					<p>{{userProfile.role}}</p>
+				</div>
+				<div class="page-header">
+					<h4 class="label-header">Adress</h4>
+					<p>{{userProfile.adress}}</p>
+				</div>
+				<div class="page-header">
+					<h4 class="label-header">Telefon</h4>
+					<p>{{userProfile.phone}}</p>
+				</div>
+
+			</div>
+			
+		</div>		
+	</div>
+
+
+</section>

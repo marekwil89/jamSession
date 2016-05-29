@@ -115,7 +115,7 @@ router.route('/newMessage/:id').post(function(req, res){
 			if (err){
 				return res.status(500).send(err)
 			}
-			return res.status(200).send('Message added');
+			return res.status(200).send('Komentarz został dodany');
 		});		
 	})
 })
@@ -124,7 +124,10 @@ router.route('/newMessage/:id').post(function(req, res){
 
 router.route('/newJam').post(function(req, res){
 
-	Jam.findOne({ 'title' :  req.body.title }, function(err, jam) {
+	var today = new Date();
+	today.setDate(today.getDate())
+
+	Jam.findOne({ 'title' :  req.body.title,  date: {$gte:today} }, function(err, jam) {
 		if (jam) {
 			return res.status(500).send('Tytuł Jamu jest już zajęty, wpisz inny')
 		}
@@ -140,11 +143,14 @@ router.route('/newJam').post(function(req, res){
 			newJam.guestLimit = 40;
 			newJam.like = 0;
 			newJam.dislike = 0;
-			newJam.save(function(err){
+			newJam.save(function(err, newJam){
 				if(err){
 					console.log(err)
 				}
-				return res.status(200).send("Jam Session został dodany");
+				return res.status(200).send({
+					text: 'Gratulacje, dodałeś nowy Jam, nastąpi przekierowanie ...',
+					id: newJam._id
+				});
 			})		
 		}
 	});
@@ -199,8 +205,7 @@ router.route('/guestToJam/:id').post(function(req, res){
 		var guest = {
 			id : req.user._id,
 			username : req.user.username,
-			role : req.user.role,
-			status: 'chce isc',
+			status: 'Bierze udział',
 		}
 		jam.guests.push(guest);
 		jam.save(function(err, jam) {

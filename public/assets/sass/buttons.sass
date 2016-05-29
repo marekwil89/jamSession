@@ -1,0 +1,182 @@
+//buttons
+
+.button
+	padding: 7px 10px
+	font-size: 16px
+	display: block-inline
+	border: none
+	border-radius: 4px
+	transition: all 0.5s ease-in-out
+	
+.btn-long
+	width: 100%
+
+.button-info
+	background: $info
+	color: $white-color
+
+	&:hover
+		background: lighten($info,10%)
+		color: $white-color
+		text-decoration: none
+		cursor: pointer
+
+.button-danger
+	background: $danger
+	color: $white-color
+
+	&:hover
+		background: lighten($danger,10%)
+		color: $white-color
+		text-decoration: none
+		cursor: pointer
+
+.button-success
+	background: $success
+	color: $white-color
+
+	&:hover
+		background: lighten($success,10%)
+		color: $white-color
+		text-decoration: none
+		cursor: pointer
+
+
+.button-main-color
+	background: $main-color
+	color: $white-color
+
+	&:hover
+		background: lighten($main-color,10%)
+		color: $white-color
+		text-decoration: none
+		cursor: pointer
+
+
+
+//like and guest icon presentation
+
+.like-icon
+	background: $main-color
+
+.guest-icon
+	background: $info
+
+
+
+//main page photo links
+
+
+.week-jam
+
+	article
+		transform: translateX(-20px)
+		transition: filter 1s, box-shadow 1s, opacity 1s
+		overflow: hidden
+		opacity: 0
+		min-height: 200px
+
+		&.is-showing
+			opacity: 1
+			transform: translateX(0px)
+
+.photo-links-section
+
+	a
+
+		&:hover
+			text-decoration: none
+
+	figure
+		opacity: 0
+		transform: translateX(-20px)
+		border-radius: 4px
+		height: 250px
+		display: flex
+		align-items: center
+		justify-content: center
+		transition: all 0.5s ease-in-out   
+		background-size: 100% 100%
+		overflow: hidden
+	
+		&.is-showing
+			opacity: 1
+			transform: translateX(0px)
+			
+		span
+			transition: all 0.5s ease-in-out 
+			opacity: 0
+			font-size: 40px
+			color: white
+
+
+		&:hover
+			span
+				opacity: 1
+
+	@media screen and (max-width: 770px)
+		figure
+			border-radius: 0px
+
+			span
+				opacity: 1
+
+
+
+
+
+//main page down arrow
+
+.arrow-down
+	border: solid $white-color 5px
+	border-radius: 50%
+	position: relative
+	color: $white-color
+	bottom: -9%
+	font-size: 45px
+	padding: 10px
+	transition: all 0.5s ease-in-out   
+
+	&:hover
+		color: $main-color
+		border: solid $main-color 5px
+		cursor: pointer
+
+
+//table links
+
+a.link-success
+	color: $danger-light
+	transition: all 0.5s ease-in-out
+	font-weight: 700
+
+	&:hover,
+	&:visited
+		color: darken($danger-light,10%)
+		text-decoration: none
+		cursor: pointer
+
+
+//delete-notify-icon in my-notifications html
+
+.delete-notify-icon
+	transition: all 0.5s ease-in-out
+	color: $white-color
+	font-weight: 1200
+
+	&:hover
+		font-weight: 700
+		color: darken($white-color, 100%)
+		cursor: pointer
+
+
+
+//hide angular-bootstrap buttons in datepicker modals
+
+.datetimepicker-wrapper
+	.uib-datepicker-popup
+		.btn-success
+			display: none
+		.btn-group
+			.btn
+				display: none

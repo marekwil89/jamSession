@@ -1,0 +1,23 @@
+div.form-group
+	margin-bottom: 25px
+
+
+input[type=email],
+input[type=password],
+input[type=text],
+textarea[type=text],
+select
+	width: 100%
+	padding: 8px
+	border: 2px solid $light-gray
+	border-radius: 0px 15px 0px 15px 
+	box-sizing: border-box
+	transition: all 1s ease-in-out
+	color: 20px
+	letter-spacing: 0.5px
+	outline: none
+
+	&:focus
+		background: lighten($success, 50%)
+		border: $success 2px solid
+		color: darken($success, 20%)

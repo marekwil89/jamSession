@@ -1,0 +1,118 @@
+<header class="background-header jam-img min-height">
+	<h1 class="text-header header-font">{{jam.title}}</h1>
+</header>
+
+<div class="space-between-small"></div>
+
+<article class="container">
+	<div class="row">
+
+		<div class="col-sm-7">
+			<h2 class="label-header">Informacje</h2>
+			<p class="justify">{{jam.descr}}</p>
+			
+		</div>
+		<div class="col-sm-4 col-md-offset-1">
+			<hr>
+			<p><i class="fa fa-calendar fa-1x" aria-hidden="true"></i> {{jam.date | date : 'shortTime'}}, {{jam.date | date: 'fullDate'}}</p>
+			<hr>
+			<p><i class="fa fa-user fa-1x" aria-hidden="true"></i> {{jam.org.username}}</p>
+			<hr>
+			<p><i class="fa fa-map-o fa-1x" aria-hidden="true"></i> {{jam.state}}</p>
+			<hr>
+			<p><i class="fa fa-location-arrow fa-1x" aria-hidden="true"></i> {{jam.location}}</p>
+			<hr>
+			
+			<button type="button" class="button button-info" data-toggle="modal" data-target="#myModal">
+				<i class="fa fa-users" aria-hidden="true"></i> Lista osób {{jam.guests.length}}
+			</button>
+
+			<button ng-click="likeJam()" popover-trigger="outsideClick: outsideClick" uib-popover="{{likeError}}" class="button button-main-color"><i class="fa fa-heart" aria-hidden="true"></i> {{jam.like}}</button>
+		</div>
+	</div>
+</article>
+
+<section class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+
+			<div class="separate-border">
+				<span class="text-middle header-font">Komentarze</span>
+			</div>
+
+			<form ng-submit="newMessage()" novalidate>
+				<h3>Dodaj komentarz</h3>
+				<br>
+				
+				<div class="form-group">
+					<textarea type="text" placeholder="tekst komentarza" ng-model="message.text" class="form-control" rows="5" id="comment"></textarea>
+				</div>
+				
+				<div ng-if="errors" class="alert alert-danger" role="alert">{{errors}}</div>
+				
+
+				<button type="submit" class="button btn-long button-danger"><i class="fa fa-comment" aria-hidden="true"></i> Dodaj</button>
+				
+				
+			</form>
+			<hr>
+			<div class="space-between"></div>
+		</div>		
+	</div>
+
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+
+			<div ng-repeat="message in jam.messages | orderBy: '-created_at'" class="case">
+				<div class="case-heading">
+					<em class="text-muted">{{message.created_at | date : 'shortTime'}}, {{message.created_at | date: 'fullDate'}}</em>
+				</div>
+				<div class="case-body">
+					<a class="link-success" href="#/userProfile/{{message.username}}">{{message.username | shortenEmail}}</a> napisał:
+					<hr>
+					<p class="justify">{{message.text}}</p>
+				</div>
+			</div>			
+			
+
+<!-- 			<div ng-repeat="message in jam.messages | orderBy: '-created_at'" class="panel">
+				<div class="panel-heading">
+					<em class="text-muted">{{message.created_at | date : 'shortTime'}}, {{message.created_at | date: 'fullDate'}}</em>
+				</div>
+				<div class="panel-body">
+					<a class="link-success" href="#/userProfile/{{message.username}}">{{message.username | shortenEmail}}</a> napisał:
+					<hr>
+					<p class="justify">{{message.text}}</p>
+				</div>
+			</div> -->
+		</div>		
+	</div>
+</section>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<i data-dismiss="modal" class="fa fa-times pull-right fa-1x delete-notify-icon" aria-hidden="true"></i>
+				<h2 class="text-center"><i class="fa fa-users" aria-hidden="true"></i> Lista osób</h2>
+			</div>
+			<div class="modal-body">
+				
+				<div ng-if="jam.guests.length == 0" class="alert alert-danger" role="alert">Nikt nie dołączył do tego jamu</div>
+
+				<div ng-if="jam.guests.length > 0" ng-repeat="guest in jam.guests" class="case">
+					<div class="case-body">
+						<a class="link-success" href="#/userProfile/{{guest.username}}" target="_blank">{{guest.username | shortenEmail}}</a> - {{guest.status}}
+					</div>
+				</div>
+				<hr>
+
+				<a ng-click="addGuestToJam()" popover-trigger="outsideClick: outsideClick" uib-popover="{{addError}}" class="button button-info"><i class="fa fa-user-plus" aria-hidden="true"></i> Dołącz</a>
+
+				<a ng-click="guestLoseJam()" popover-trigger="outsideClick: outsideClick" uib-popover="{{loseError}}" class="button button-danger"><i class="fa fa-user-times" aria-hidden="true"></i> Wycofaj</a>
+				
+				<hr>
+			</div>
+		</div>
+	</div>
+</div>

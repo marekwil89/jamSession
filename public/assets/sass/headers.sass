@@ -1,0 +1,161 @@
+//every background on site
+
+.min-height
+	min-height: 350px
+
+.vh-height
+	height: 100vh
+
+.background-header
+	margin-top: 50px
+	display: flex
+	align-items: center
+	justify-content: center
+	background-size: cover
+	background-attachment: fixed
+	background-repeat: no-repeat
+	flex-direction: column
+	overflow: hidden
+
+	.text-header
+		text-transform: uppercase
+		border-radius: 2%
+		text-align: center
+		border: solid 7px $white-color
+		padding: 7px 7px
+		color: $white-color
+		font-weight: 700
+		font-size: 55px
+
+		@media screen and (max-width: 770px)
+			font-size: 30px
+			border: solid 3px $white-color
+
+	.logo
+		text-align: center
+		color: $sec-color
+		font-weight: 700
+		font-size: 60px
+	
+		span
+			color: $main-color
+
+	.text-under-logo
+		text-align: center
+		color: $sec-color
+		letter-spacing: 2px
+		font-size: 17px
+		font-weight: 700
+		margin-bottom: 20px
+		
+	@media screen and (max-width: 510px)
+		.logo
+			font-size: 35px
+
+		.text-under-logo
+			font-size: 14px
+
+
+
+
+//separate-border
+
+.separate-border
+	margin-top: 125px
+	margin-bottom: 100px
+	width: 100%
+	height: 20px 
+	border-bottom: 1px solid black 
+	text-align: center
+
+
+	.text-middle
+		font-size: 33px 
+		background-color: white 
+		padding: 0 10px
+
+
+@media screen and (max-width: 480px)
+	.separate-border
+		margin-bottom: 60px
+
+		.text-middle
+			font-size: 18px 
+
+
+
+
+//linked jam header
+
+.jam-header
+	text-transform: uppercase
+	font-size: 23px
+	font-weight: 700
+	color: $muted-gray
+	transition: color 1s
+
+
+	&:hover
+		text-decoration: none
+		color: $main-color
+
+@media screen and (max-width: 480px)
+	.jam-header
+		font-size: 17px
+
+
+
+
+//static header in add jam, edit jam itd...
+
+.label-header
+	color: $main-color
+	font-weight: 700
+	letter-spacing: 0.5px
+
+
+
+//notify case, comment case & modal header on /jam/id
+
+.case
+	
+	border: none
+
+	.case-heading
+		width: 100%
+		background: $info
+		padding: 8px
+		border-radius: 3px
+
+		em
+			color: $white-color
+
+	.case-body
+		border: 0.3px lighten($sec-color, 10%) solid
+		padding: 10px
+
+
+.modal-header
+	background: darken($info,20%)
+
+	h2
+		color: $white-color
+
+
+
+
+//tabs on my Profile
+
+.nav-tabs
+	padding-bottom: 50px
+
+	li
+
+		a
+			color: $muted-gray
+			transition: all 0.5s ease-in-out
+			box-shadow: none
+			background: $light-gray
+
+	&:active, &:focus, &:visited
+		border: none

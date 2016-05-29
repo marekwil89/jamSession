@@ -1,0 +1,69 @@
+//site heights
+
+html, body
+	min-height: 100%
+
+main
+	min-height: 100vh
+	padding-bottom: 120px
+
+.main-jams
+	min-height: 50vh
+
+
+//spaces between sections
+
+
+.space-between
+	margin-bottom: 100px
+
+.space-between-small
+	margin-bottom: 50px
+
+.space-between-xs
+	margin-bottom: 25px
+
+
+
+
+//textarea edit - with empty error class
+
+textarea
+	resize: none
+
+textarea.empty, input.empty
+	border: $danger solid 2px
+	box-sizing: border-box
+
+
+
+//bootstrap alerts edited
+
+.alert
+	margin-top: 40px
+	text-align: center
+
+	a
+		font-weight: 700
+		transition: all 0.5s ease-in-out
+		color: $danger
+
+		&:hover
+			text-decoration: none
+			color: lighten($danger,20%)
+
+
+
+//my profile presentation
+
+article.my-jam
+	min-height: 35vh
+	padding: 25px 
+	margin: 25px 0px
+	border-bottom: $main-color 2px solid
+
+
+@media screen and (max-width: 480px)
+	article.my-jam
+		padding: 25px 0px
+

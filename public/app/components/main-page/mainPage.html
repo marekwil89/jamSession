@@ -1,0 +1,70 @@
+<header class="background-header main-page-img vh-height">
+
+	<h1 class="logo"><span class="main-color">Jam</span>Session</h1>
+	<em class="text-under-logo">Miejsce gdzie znajdziesz muzyków do wspólnej gry</em>
+
+	<a class="arrow-down" ng-click="gotoElement('target')"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+</header>
+
+<main  class="container">
+
+	<section id="target">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="separate-border" >
+					<span class="text-middle header-font">Cel strony</span>
+				</div>
+				<p class="justify font-size-xl"><span class="bold">Ta strona powstała dla muzyków</span> sit amet, consectetur adipisicing elit. Distinctio aut nisi itaque suscipit sequi quam atque. Modi illo excepturi voluptatibus, natus, sapiente accusantium consectetur quo, consequatur repellendus dicta ad nemo. Voluptatum laudantium voluptatem minima, fugiat quisquam officia. Molestiae nemo, enim natus, numquam aperiam, fugit ex minus harum iste assumenda at Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, quaerat illum, a ducimus libero, odio expedita neque eligendi earum voluptate necessitatibus rem est delectus explicabo odit laborum magnam quia. Aperiam nulla sed soluta dolorum quaerat saepe assumenda, quae, ipsum unde iste sapiente. Saepe nostrum in itaque porro, id necessitatibus numquam impedit eos debitis tenetur cum ratione corrupti quos, ut fugiat aperiam provident voluptatibus, suscipit minima! Fuga dolores praesentium dolor eos..</p>
+				<hr>
+			</div>				
+		</div>
+
+	</section>
+
+	<section class="photo-links-section">
+
+		<div class="separate-border" >
+			<span class="text-middle header-font">Twoje opcje</span>
+		</div>
+		<div class="row">
+			<a href="#/jamsList"><figure class="col-sm-4 list-photo-link">
+				<span>Lista</span>
+			</figure></a>
+			<a href="#/register"><figure class="col-sm-4 register-photo-link">
+				<span>Zarejestruj</span>
+			</figure></a>	
+			<a href="#/addJam"><figure class="col-sm-4 create-photo-link">
+				<span>Stwórz</span>		
+			</figure></a>
+
+		</div>
+
+	</section>
+
+	<section class="week-jam">
+		<div class="separate-border">
+			<span class="text-middle header-font">Ten tydzień</span>
+		</div>
+		
+		<div ng-if="!lastJams.length" class="alert alert-danger" role="alert">Nikt nie utworzył Jamu w tym tygodniu, stwórz <a href="#/addJam">tutaj</a> pierwszy !</div>
+		
+		<div class="row">
+			<article ng-repeat="jam in lastJams | limitTo: 6 | orderBy: 'date'" class="col-md-4 text-center">
+				<hr>
+				<p>{{jam.state}}</p>
+				<a class="jam-header" href="#/jam/{{jam._id}}">{{jam.title}}</a>
+				<p>{{jam.date | date: 'fullDate'}}</p>
+
+				<span class="label like-icon">
+					<i class="fa fa-heart" aria-hidden="true"></i>
+					{{jam.like}}
+				</span>
+				<span class="label guest-icon">
+					<i class="fa fa-users" aria-hidden="true"></i>
+					{{jam.guests.length}}
+				</span>
+			</article>
+		</div>
+
+	</section>
+</main>

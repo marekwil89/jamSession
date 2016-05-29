@@ -56,6 +56,12 @@ module.exports = function(passport){
 		passReqToCallback : true
 	},
 	function(req, username, password, done) {
+
+		if(/^[a-zA-Z]+$/.test(username) == true)
+		{
+			console.log('Email nie może zawierać Polskich znaków')
+			return done(null, false)
+		}
 		if(_.isEmpty(username) || _.isEmpty(password))
 		{
 			console.log('Pole email i hasło jest wymagane')
@@ -66,6 +72,7 @@ module.exports = function(passport){
 			console.log('to nie jest email')
 			return done(null, false)
 		}
+
 		if(username.length > 30 || username.length < 5 || password.length > 30 || password.length <5)
 		{
 			console.log('Pole email i hasło musi zawierać od 5 do 30 znaków')

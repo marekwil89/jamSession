@@ -37,7 +37,6 @@ var jamSchema = new mongoose.Schema({
 	guestLimit: Number,
 	guests: [{
 		status: String,
-		role: String,
 		username: String
 	}],
 	guestsRate: [{
