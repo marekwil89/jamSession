@@ -1,0 +1,36 @@
+<header class="background-header jam-list-img min-height">
+	<h1 class="text-header header-font">Lista Użytkowników</h1>
+</header>
+
+<div class="space-between-small"></div>
+
+<section class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="input-group">
+				<input ng-model="searchText" type="search" class="form-control" placeholder="Szukaj..." aria-describedby="basic-addon2">
+				<span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="space-between-small"></div>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<tr>
+				<th>Login/Mail</th>
+				<th>Zarejestrowany</th>
+				<th>Admin</th>
+			</tr>
+			<tr ng-repeat="user in users |  filter: searchText">
+				<td><a href="#/userProfile/{{user.username}}">{{user.username | shortenEmail}}</a></td>
+				<td><p><em>{{user.created_at | date:'shortTime' }}, {{user.created_at | date:'fullDate' }}</em></p></td>
+				<td><p>{{user.admin}}</p></td>
+				<td><a href=""><i ng-click="deleteUser(user._id)" class="fa fa-trash fa-1x" aria-hidden="true"></i></a></td>
+			</tr>
+		</table>
+	</div>
+</section>
+
+
+

@@ -31,16 +31,6 @@ angular.module('addJamModule', []).controller('addJamCtrl', function($scope, $ht
 
 	$scope.showMeridian = false;
 
-	//fill all inputs on start = delete it later
-
-	$scope.jam = {
-		title : "Przykładowy Jam",
-		descr: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde odit aperiam tempora quae saepe dolorum ratione vero minima eos culpa, est maiores, eum laudantium quam? Beatae voluptates nemo repudiandae enim rerum labore molestiae voluptatem repellendus veniam corporis dicta ipsam vitae, dolorem excepturi dolorum, sunt unde maiores, qui cumque culpa obcaecati non? Eos saepe, perferendis totam facilis vel vero quidem voluptas.",
-		state : "Mazowieckie",
-		location: "Warszawa"
-	}
-
-
 	//Poland States
 
 

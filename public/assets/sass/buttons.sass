@@ -64,10 +64,18 @@
 
 
 
+
+
+//every article with single jam on page (main page, jamslist, myprofile)
+
+.main-jams
+
+	article
+		min-height: 200px
+
 //main page photo links
 
-
-.week-jam
+.week-jam, 
 
 	article
 		transform: translateX(-20px)
@@ -81,6 +89,7 @@
 			transform: translateX(0px)
 
 .photo-links-section
+
 
 	a
 
@@ -98,6 +107,7 @@
 		transition: all 0.5s ease-in-out   
 		background-size: 100% 100%
 		overflow: hidden
+
 	
 		&.is-showing
 			opacity: 1
@@ -117,6 +127,7 @@
 	@media screen and (max-width: 770px)
 		figure
 			border-radius: 0px
+			width: 100%
 
 			span
 				opacity: 1
@@ -135,12 +146,28 @@
 	bottom: -9%
 	font-size: 45px
 	padding: 10px
-	transition: all 0.5s ease-in-out   
+	transition: all 0.5s ease-in-out
+	animation: pulse
+	animation-duration: 1s
+	animation-fill-mode: both
+	animation-iteration-count: infinite
 
 	&:hover
 		color: $main-color
 		border: solid $main-color 5px
 		cursor: pointer
+
+
+@keyframes pulse 
+	from 
+		transform: scale3d(1, 1, 1)
+
+	50% 
+		transform: scale3d(1.1, 1.1, 1.1)
+
+	to 
+		transform: scale3d(1, 1, 1)
+  
 
 
 //table links

@@ -8,7 +8,13 @@ services.service('redirect', function($location, _){
 		if(authenticated == false || !current_user || _.isEmpty(current_user)){
 			$location.path('/mainPage')
 		}
-	};   
+	};
+	
+	this.ifNotAdmin= function(admin){
+		if(admin == false){
+			$location.path('/mainPage')
+		}
+	}; 
 })
 
 

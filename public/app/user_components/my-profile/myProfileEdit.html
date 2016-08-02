@@ -1,0 +1,49 @@
+<section class="container">
+
+	<div class="separate-border" >
+		<span class="text-middle header-font">{{myProfileInfo.username}}</span>
+	</div>
+	
+	<div class="space-between-small"></div>
+
+	<form ng-submit="updateProfile(myProfileInfo)">
+		
+		<div class="page-header">
+			<h4 class="label-header">Adres</h4>
+			<input type="text" class="form-control" ng-autocomplete="myProfileInfo.adress" ng-model="myProfileInfo.adress" details="details1" options="options1">
+		</div>
+
+		<div class="page-header">
+			<h4 class="label-header">Sprzęt</h4>
+			<select class="form-control" ng-model="myProfileInfo.role" aria-describedby="sizing-addon1">
+				<option value="" disabled selected><strong>--- Wybierz sprzęt ---</strong></option>
+				<option ng-repeat="role in roles" value="{{role}}">{{role}}</option>
+			</select>
+		</div>
+
+		<div class="page-header">
+			<h4 class="label-header">Telefon</h4>
+			<input class="form-control" type="text" placeholder="{{myProfileInfo.phone}}" ng-model="myProfileInfo.phone">
+		</div>
+		
+
+		<div ng-if="errors" class="alert alert-danger" role="alert">{{errors}}</div>
+		<div ng-if="success" class="alert alert-success" role="alert">{{success}}</div>
+	
+		<input class="button button-success" value="Zapisz zmiany" type="submit" >
+
+		<a class="button button-danger" href="#/myProfile">Cofnij</a>
+	</form>
+</section>
+
+							
+
+														
+
+
+
+				
+
+					
+
+							

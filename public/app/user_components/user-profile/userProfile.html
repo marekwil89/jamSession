@@ -11,10 +11,16 @@
 
 				<div class="space-between-small"></div>
 
+				<div ng-if="userProfile.admin == true" class="page-header">
+					<h4 class="label-header">Status</h4>
+					<p>Admin</p>
+				</div>
+
 				<div class="page-header">
 					<h4 class="label-header">Zarejestrowany</h4>
+					<p>{{userProfile.created_at | date : 'shortTime'}}, {{userProfile.created_at | date: 'fullDate'}}</p>
 				</div>
-				<p>{{userProfile.created_at | date : 'shortTime'}}, {{userProfile.created_at | date: 'fullDate'}}</p>
+				
 				<div class="page-header">
 					<h4 class="label-header">Sprzęt</h4>
 					<p>{{userProfile.role}}</p>

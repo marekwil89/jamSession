@@ -1,15 +1,10 @@
 angular.module('authModule', []).controller('authController', function($scope, $http, $rootScope, $location, verify){
 
 
-	//fill all register and login inputs on run == delete it later
-
-	// $scope.user = {
-	// 	username : 'przykładowy@mail.com',
-	// 	password : 'manta123',
-	// 	repeatPass: 'manta123'
-	// }
-
-
+	$scope.user = {
+		username: 'dlaczego@dlaczego.pl',
+		password: 'manta123'
+	}
 
 
 	$scope.register = function(){
@@ -29,6 +24,7 @@ angular.module('authModule', []).controller('authController', function($scope, $
 				$rootScope.admin = data.user.admin;
 				$rootScope.adress = data.user.adress;
 				$rootScope.current_user = data.user.username;
+				$rootScope.getNotificationLength()
 				$location.path('/');
 				$rootScope.limit = shortenEmail($rootScope.current_user);
 			}
@@ -58,7 +54,7 @@ angular.module('authModule', []).controller('authController', function($scope, $
 				$rootScope.admin = data.user.admin;
 				$rootScope.current_user =  data.user.username;
 				$location.path('/');
-
+				$rootScope.getNotificationLength()
 			}
 			else{
 				$scope.errors = data.message;

@@ -11,6 +11,8 @@ angular.module('jamModule', []).controller('jamCtrl', function($scope, $http, $r
 	getJamInfo()
 
 
+
+
 	//notify about guest added
 
 	var addGuestNotify = function(){
@@ -102,9 +104,25 @@ angular.module('jamModule', []).controller('jamCtrl', function($scope, $http, $r
 
 	//comment add function
 
+	var addMessageNotify = function(){
+
+		var newNotify = {
+			username: $rootScope.current_user,
+			org : $scope.jam.org.username,
+			title : $scope.jam.title,
+			jamId : $scope.jam._id
+		} 
+
+		$http.post('add/messageNotify', newNotify).success(function(data){
+			console.log('notify added')
+		})
+	}
+
+
 	$scope.newMessage = function(){
 		$http.post('add/newMessage/' + $routeParams.id, $scope.message).success(function(data){
 			getJamInfo()
+			addMessageNotify()
 			$scope.message.text = ''
 		}).error(function(data){
 			$scope.errors = data

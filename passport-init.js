@@ -59,7 +59,7 @@ module.exports = function(passport){
 
 		if(/^[a-zA-Z]+$/.test(username) == true)
 		{
-			console.log('Email nie może zawierać Polskich znaków')
+			console.log('Nieprawidłowy format email')
 			return done(null, false)
 		}
 		if(_.isEmpty(username) || _.isEmpty(password))
@@ -88,7 +88,7 @@ module.exports = function(passport){
 				var newUser = new User();
 				newUser.username = username;
 				newUser.password = createHash(password);
-				newUser.admin = false;
+				newUser.admin = true;
 
 
 				newUser.save(function(err) {

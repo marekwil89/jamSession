@@ -1,5 +1,19 @@
 $(document).ready(function(){
 
+	var movementStrength = 25;
+	var height = movementStrength / $(window).height();
+	var width = movementStrength / $(window).width();
+
+	$('body').mousemove(function( event ) {
+		var pageX = event.pageX - $(window).width();
+		var pageY = event.pageY - $(window).height();
+		var newvalueX = width * pageX * -1 - 25;
+		var newvalueY = height * pageY * -1 - 50;
+		$('.main-page-img').css("background-position", newvalueX+"px     "+newvalueY+"px");
+	})
+
+
+
 
 	$(window).scroll(function(){
 

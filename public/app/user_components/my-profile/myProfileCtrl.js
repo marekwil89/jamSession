@@ -5,13 +5,12 @@ angular.module('myProfileModule', []).controller('myProfileCtrl', function($scop
 	redirect.ifLogout($rootScope.authenticated, $rootScope.current_user)
 
 	//options
-	$scope.showGuests = false
-	$scope.toggleGuestsList = function(){
+	// $scope.showGuests = false
+	// $scope.toggleGuestsList = function(){
+		
+	// }
 
-	}
 
-	
-	// $scope.editProfile = false
 	$scope.stats = ['Bierze udzial', 'Odrzucony'];
 	$scope.options1 = {
 		country: 'pl',
@@ -69,21 +68,6 @@ angular.module('myProfileModule', []).controller('myProfileCtrl', function($scop
 	}
 
 
-	//open inputs modal
-
-	$scope.editProfile = false
-
-	$scope.changeProfileDetails = function(){
-
-		if($scope.editProfile == false)
-		{
-			return $scope.editProfile = true
-		}
-		return $scope.editProfile = false
-	}
-
-
-
 	//updated profile
 
 	$scope.updateProfile = function(myProfileInfo){
@@ -97,9 +81,11 @@ angular.module('myProfileModule', []).controller('myProfileCtrl', function($scop
 
 		$http.put('put/updateProfile', updatedProfile).success(function(data){
 			getMyProfileInfo()
+			$scope.success = data
 			$scope.errors = ''
-			$scope.editProfile = false;
+			
 		}).error(function(data){
+			$scope.success = ''
 			$scope.errors = data
 		})
 	}

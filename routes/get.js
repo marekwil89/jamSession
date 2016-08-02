@@ -4,51 +4,40 @@ var mongoose = require( 'mongoose' );
 var _ = require('underscore');
 var Jam = mongoose.model('Jam');
 var User = mongoose.model('User');
+var valid = require('./validation.js');
 
 
 
-// function isAdmin(req, res, next){
-// 	if(_.isEmpty(req.user) || !req.user)
-// 	{
-// 		return res.status(500).send('Nie jesteś zalgowany')
-// 	}
-// 	else if(req.user.admin != true || req.user.admin == false)
-// 	{
-// 		return res.status(500).send('Brak uprawnień')
-// 	}
-// 	next()
+//admin
 
-// }
+router.use('/usersList', valid.isAdmin)
 
+//user
 
-function isUserLogin(req, res, next){
-	if(_.isEmpty(req.user) || !req.user )
-	{
-		console.log('Nie jesteś zalogowany')
-		return res.status(500).send('Nie jesteś zalogowany')
-	}
-	next()
-}
+router.use('/guestsRateData/:id', valid.isUserLogin);
+router.use('/getMyProfileInfo', valid.isUserLogin);
+router.use('/getMyProfileJams', valid.isUserLogin);
+router.use('/getUserSignJams', valid.isUserLogin);
+router.use('/allNotifications', valid.isUserLogin);
+router.use('/notificationLength', valid.isUserLogin);
 
 
+router.route('/usersList').get(function(req, res){
 
-router.use('/guestsRateData/:id', isUserLogin);
-router.use('/getMyProfileInfo', isUserLogin);
-router.use('/getMyProfileJams', isUserLogin);
-router.use('/getUserSignJams', isUserLogin);
-router.use('/allNotifications', isUserLogin);
-router.use('/notificationLength', isUserLogin);
+	User.find({}, function(err, users){
+		return res.status(200).send(users)
+	})
 
+})
 
 router.route('/getLoginUser').get(function(req, res){
 	if(_.isEmpty(req.user))
 	{
 		return res.status(500).send('nie zalogowany USER')
 	}
-	else
-	{
-		return res.status(200).send(req.user)
-	}
+
+	return res.status(200).send(req.user)
+
 })
 
 router.route('/getProfileInfo/:username').get(function(req, res){
@@ -92,8 +81,6 @@ router.route('/notificationLength').get(function(req, res){
 		var notify = {
 			length : notifications.length
 		}
-
-		 
 
 		return res.status(200).send(notify);
 	})
@@ -155,6 +142,15 @@ router.route('/getUserSignJams').get(function(req, res){
 })
 
 
+//admin
+
+router.route('/allJams').get(function(req, res){
+
+	Jam.find({}, function(err, jams){
+		return res.status(200).send(jams)
+	})
+
+})
 
 
 

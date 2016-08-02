@@ -1,0 +1,39 @@
+<header class="background-header jam-list-img min-height">
+	<h1 class="text-header header-font">Lista Jamów</h1>
+</header>
+
+<div class="space-between-small"></div>
+
+<section class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="input-group">
+				<input ng-model="searchText" type="search" class="form-control" placeholder="Szukaj..." aria-describedby="basic-addon2">
+				<span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="space-between-small"></div>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<tr>
+				<th>Tytuł</th>
+				<th>Adres</th>
+				<th>Data</th>
+				<th class="hidden-xs">Biorących udział</th>
+			</tr>
+			<tr ng-repeat="jam in allJams |  filter: searchText">
+
+			
+				<td><a href="#/jam/{{jam._id}}">{{jam.title}}</a></td>
+				<td><p>{{jam.location}}</p></td>
+				<td><p><em>{{jam.date | date:'shortTime' }}, {{jam.date | date:'fullDate' }}</em></p></td>
+				<td class="hidden-xs"><p>{{jam.guests.length}}</p></td>
+				<td><a href="#/editJam/{{jam._id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+				<td><a href="" ng-click="deleteJam(jam._id)"><i class="fa fa-trash fa-1x" aria-hidden="true"></i></a></td>
+			</tr>
+		</table>	
+	</div>
+</section>
+

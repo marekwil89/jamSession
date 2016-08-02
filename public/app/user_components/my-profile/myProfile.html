@@ -7,32 +7,37 @@
 		<div class="space-between-small"></div>
 		<uib-tab index="0" heading="BIERZESZ UDZIAŁ">
 
-			<div ng-if="!mySignJams.length" class="alert alert-danger" role="alert">Nie dołączyłeś do żadnego jamu, <a href="#/jamsList">dołącz teraz</a></div>
+			<section class="main-jams">
+				<div ng-if="!mySignJams.length" class="alert alert-danger" role="alert">Nie dołączyłeś do żadnego jamu, <a href="#/jamsList">dołącz teraz</a></div>
 
-			<div class="row">
-				<article ng-repeat="signJam in mySignJams | orderBy: 'date'" class="col-md-4 text-center">
-					<hr>
-					<p>{{signJam.state}}</p>
-					<a class="jam-header" href="#/jam/{{signJam._id}}">{{signJam.title}}</a>
+				<div class="row">
+					<article ng-repeat="signJam in mySignJams | orderBy: 'date'" class="col-md-4 text-center">
+						<hr>
+						<p>{{signJam.state}}</p>
+						<a class="jam-header" href="#/jam/{{signJam._id}}">{{signJam.title}}</a>
 
-					<p><em>{{signJam.date | date:'shortTime' }}, {{signJam.date | date:'fullDate' }}</em></p>
-					<span class="label like-icon">
-						<i class="fa fa-heart" aria-hidden="true"></i>
-						{{signJam.like}}
-					</span>
-					<span class="label guest-icon">
-						<i class="fa fa-users" aria-hidden="true"></i>
-						{{signJam.guests.length}}
-					</span>
-				</article>
-			</div>
+						<p><em>{{signJam.date | date:'shortTime' }}, {{signJam.date | date:'fullDate' }}</em></p>
+						<span class="label like-icon">
+							<i class="fa fa-heart" aria-hidden="true"></i>
+							{{signJam.like}}
+						</span>
+						<span class="label guest-icon">
+							<i class="fa fa-users" aria-hidden="true"></i>
+							{{signJam.guests.length}}
+						</span>
+					</article>
+				</div>			
+			</section>
+
+
 
 		</uib-tab>
 
 		<uib-tab class="tab" index="1" heading="UTWORZONE JAMY">
 
-
+		
 			<div ng-if="!myCreatedJams.length" class="alert alert-danger" role="alert">Brak stworzonych Jamów, stwórz swój pierwszy <a href="#/addJam">tutaj</a></div>
+
 
 			<article ng-repeat="myJam in myCreatedJams | orderBy: 'date'" class="col-md-12 my-jam">
 				<p>{{myJam.state}}</p>
@@ -52,8 +57,8 @@
 				<hr>
 				
 				<div class="row">
-					<div ng-repeat="guest in myJam.guests" class="panel col-md-4">
-						<div class="panel-body text-center">
+					<div ng-repeat="guest in myJam.guests" class="case col-md-4">
+						<div class="case-body text-center">
 							<a class="link-success" href="#/userProfile/{{guest.username}}" target="_blank">{{guest.username | shortenEmail}}</a> - {{guest.status}}
 							<hr>
 							<select class="form-control" ng-model="newStatus" ng-change="changeGuestStatus(newStatus, guest._id, myJam._id)">
@@ -87,27 +92,23 @@
 						<div class="page-header">
 							<h4 class="label-header">Sprzęt</h4>
 							<p>{{myProfileInfo.role}}</p>
-							<select ng-if="editProfile == true" class="form-control" ng-model="myProfileInfo.role" aria-describedby="sizing-addon1">
-								<option value="" disabled selected><strong>--- Wybierz sprzęt ---</strong></option>
-								<option ng-repeat="role in roles" value="{{role}}">{{role}}</option>
-							</select>
+
 						</div>
 						<div class="page-header">
 							<h4 class="label-header">Adres</h4>
 							<p>{{myProfileInfo.adress}}</p>
-							<input ng-if="editProfile == true" type="text" class="form-control" ng-autocomplete="myProfileInfo.adress" ng-model="myProfileInfo.adress" details="details1" options="options1">
+
 						</div>
 						<div class="page-header">
 							<h4 class="label-header">Telefon</h4>
 							<p>{{myProfileInfo.phone}}</p>
 
-							<input ng-if="editProfile == true" class="form-control" type="number" placeholder="{{myProfileInfo.phone}}" ng-model="myProfileInfo.phone">
+
 						</div>
 
-						<div ng-if="errors" class="alert alert-danger" role="alert">{{errors}}</div>
-
-						<a class="button button-info" ng-click="changeProfileDetails()"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-						<a class="button button-success" ng-click="updateProfile(myProfileInfo)" ng-if="editProfile == true"><i class="fa fa-check" aria-hidden="true"></i></a>
+						
+						
+						<a class="button button-success" href="#/myProfileEdit"><i class="fa fa-check" aria-hidden="true"></i> Edycja</a>
 					</div>	
 				</div>
 

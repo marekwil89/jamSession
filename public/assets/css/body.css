@@ -78,6 +78,9 @@
 .guest-icon {
   background: #336699; }
 
+.main-jams article {
+  min-height: 200px; }
+
 .week-jam article {
   transform: translateX(-20px);
   transition: filter 1s, box-shadow 1s, opacity 1s;
@@ -113,7 +116,8 @@
     opacity: 1; }
 @media screen and (max-width: 770px) {
   .photo-links-section figure {
-    border-radius: 0px; }
+    border-radius: 0px;
+    width: 100%; }
     .photo-links-section figure span {
       opacity: 1; } }
 
@@ -125,12 +129,23 @@
   bottom: -9%;
   font-size: 45px;
   padding: 10px;
-  transition: all 0.5s ease-in-out; }
+  transition: all 0.5s ease-in-out;
+  animation: pulse;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite; }
   .arrow-down:hover {
     color: #ff3333;
     border: solid #ff3333 5px;
     cursor: pointer; }
 
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1); }
+  50% {
+    transform: scale3d(1.1, 1.1, 1.1); }
+  to {
+    transform: scale3d(1, 1, 1); } }
 a.link-success {
   color: #ff6666;
   transition: all 0.5s ease-in-out;
@@ -254,15 +269,14 @@ div#custom-bootstrap-menu.navbar-default {
   height: 100vh; }
 
 .background-header {
-  margin-top: 50px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
   flex-direction: column;
-  overflow: hidden; }
+  background-attachment: fixed;
+  background-size: 110% 110%;
+  background-repeat: no-repeat; }
   .background-header .text-header {
     text-transform: uppercase;
     border-radius: 2%;

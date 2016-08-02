@@ -4,98 +4,29 @@ var mongoose = require( 'mongoose' );
 var _ = require('underscore');
 var User = mongoose.model('User');
 var Jam = mongoose.model('Jam');
+var valid = require('./validation.js');
 
+router.use('/newJam', valid.isUserLogin);
+router.use('/newJam', valid.checkEmptyJam);
+router.use('/newJam', valid.checkTitleLength);
+router.use('/newJam', valid.checkDescrLength);
+router.use('/newJam', valid.checkLocationLength);
+router.use('/newJam', valid.checkDate);
 
-router.use('/newJam', isUserLogin);
-router.use('/newJam', checkEmptyJam);
-router.use('/newJam', checkTitleLength);
-router.use('/newJam', checkDescrLength);
-router.use('/newJam', checkLocationLength);
-router.use('/newJam', checkDate);
+router.use('/likeJam', valid.isUserLogin);
+router.use('/guestToJam/:id', valid.isUserLogin);
+router.use('/guestToJam/:id', valid.checkDate);
 
-router.use('/likeJam', isUserLogin);
-router.use('/guestToJam/:id', isUserLogin);
-
-router.use('/newMessage/:id', isUserLogin);
-router.use('/newMessage/:id', checkEmptyMessage);
-router.use('/newMessage/:id', checkTextLength);
-
-
-
-router.use('/guestNotify', isUserLogin);
-router.use('/likeNotify', isUserLogin);
-router.use('/removeGuestNotify', isUserLogin);
+router.use('/newMessage/:id', valid.isUserLogin);
+router.use('/newMessage/:id', valid.checkEmptyMessage);
+router.use('/newMessage/:id', valid.checkTextLength);
 
 
 
-
-function isUserLogin(req, res, next){
-	if(_.isEmpty(req.user) || !req.user )
-	{
-		console.log('Nie jesteś zalogowany')
-		return res.status(500).send('Nie jesteś zalogowany')
-	}
-	next()
-}
-
-function checkEmptyJam(req, res, next){
-	if(!req.body.date || _.isEmpty(req.body.date) || !req.body.location || _.isEmpty(req.body.location) || !req.body.title || _.isEmpty(req.body.title) || !req.body.descr || _.isEmpty(req.body.descr))
-	{
-		return res.status(500).send('Uzupełnij wszystkie pola')
-	}
-	next()
-}
-
-function checkTitleLength(req, res, next){
-	if(req.body.title.length > 20 || req.body.title.length < 5){
-		return res.status(500).send('Dostępna ilość znaków dla pola tytuł to 5 - 20')
-	}
-	next()
-}
-
-function checkDescrLength(req, res, next){
-	if(req.body.descr.length > 2000 || req.body.descr.length < 5){
-		return res.status(500).send('Dostępna ilość znaków dla pola opis to 5 - 2000')
-	}
-	next()
-}
-
-function checkLocationLength(req, res, next){
-	if(req.body.location.length > 100 || req.body.location.length < 5){
-		return res.status(500).send('Dostępna ilość znaków dla pola lokalizacja to 5 - 100')
-	}
-	next()
-}
-
-function checkEmptyMessage(req, res, next){
-	if(!req.body.text || _.isEmpty(req.body.text))
-	{
-		return res.status(500).send('Uzupełnij pole tekst')
-	}
-	next()
-}
-
-function checkTextLength(req, res, next){
-	if(req.body.text.length > 1000 || req.body.text.length < 5){
-		return res.status(500).send('Dostępna ilość znaków dla wiadmość opis to 5 - 1000')
-	}
-	next()
-}
-
-
-function checkDate(req, res, next){
-	var JamDate = new Date(req.body.date)
-	var today = new Date()
-
-	if(JamDate < today)
-	{
-		return res.status(500).send('Data Jamu musi być większa od daty teraźniejszej')
-	}
-	next()
-}
-
-
-
+router.use('/guestNotify', valid.isUserLogin);
+router.use('/likeNotify', valid.isUserLogin);
+router.use('/removeGuestNotify', valid.isUserLogin);
+router.use('/messageNotify', valid.isUserLogin);
 
 
 
@@ -228,7 +159,6 @@ router.route('/guestNotify').post(function(req, res){
 			text : 'dołączył',
 			jamTitle: req.body.title,
 			read: false,
-			class:'notify-join',
 			jamId: req.body.jamId
 		}
 		user.notifications.push(notify);
@@ -247,7 +177,6 @@ router.route('/likeNotify').post(function(req, res){
 			text : 'polubił',
 			jamTitle: req.body.title,
 			read: false,
-			class: 'notify-like',
 			jamId: req.body.jamId
 		}
 		user.notifications.push(notify);
@@ -259,6 +188,23 @@ router.route('/likeNotify').post(function(req, res){
 	})
 })
 
+router.route('/messageNotify').post(function(req, res){
+	User.findOne({username : req.body.org}, function(err, user){
+		var notify = {
+			username : req.body.username,
+			text : 'skomentował',
+			jamTitle: req.body.title,
+			read: false,
+			jamId: req.body.jamId
+		}
+		user.notifications.push(notify);
+		user.save(function(err, user){
+			if(err)
+				return res.status(500).send(err)
+			return res.status(200).send('Dodano')
+		})
+	})
+})
 
 router.route('/removeGuestNotify').post(function(req, res){
 	User.findOne({username : req.body.org}, function(err, user){
@@ -267,7 +213,6 @@ router.route('/removeGuestNotify').post(function(req, res){
 			text : 'opuścił',
 			jamTitle: req.body.title,
 			read: false,
-			class: 'notify-leave',
 			jamId: req.body.jamId
 		}
 		user.notifications.push(notify);
@@ -279,10 +224,5 @@ router.route('/removeGuestNotify').post(function(req, res){
 	})
 })
 
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////
 
 module.exports = router;

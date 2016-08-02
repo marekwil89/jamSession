@@ -5,6 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html, charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+
 		<title>JamSession</title>
 
 		<!-- 		css file compiled by 'koala' program -->
@@ -25,7 +26,8 @@
 
 		<!-- 		Page -->
 
-		<navigation></navigation>	
+		<navuser ng-if="admin == false"></navuser>
+		<naviadmin ng-if="admin == true"></naviadmin>
 		<main ng-view autoscroll></main>
 		<footer></footer>
 
@@ -64,28 +66,29 @@
 		<script src="assets/js/directives.js"></script>
 		<script src="assets/js/filters.js"></script>
 
-
-
 		<!-- 		Components and shared angular directives -->
 
 		<script src="app/shared/footer/footerDire.js"></script>
 		<script src="app/shared/navigation/navigationDire.js"></script>
 		
-
-
-		<!-- 		Components and shared angular controllers -->
+		<!-- 		Components and shared angular controllers - USER -->
 
 		<script src="app/shared/navigation/navigationCtrl.js"></script>
-		<script src="app/components/add-jam/addJamCtrl.js"></script>
-		<script src="app/components/auth/authCtrl.js"></script>
-		<script src="app/components/auth/authService.js"></script>
-		<script src="app/components/edit-jam/editJamCtrl.js"></script>
-		<script src="app/components/jam/jamCtrl.js"></script>
-		<script src="app/components/jams/jamsListCtrl.js"></script>
-		<script src="app/components/main-page/mainPageCtrl.js"></script>
-		<script src="app/components/my-notifications/myNotificationsCtrl.js"></script>
-		<script src="app/components/my-profile/myProfileCtrl.js"></script>
-		<script src="app/components/user-profile/userProfileCtrl.js"></script>
+		<script src="app/user_components/add-jam/addJamCtrl.js"></script>
+		<script src="app/user_components/auth/authCtrl.js"></script>
+		<script src="app/user_components/auth/authService.js"></script>
+		<script src="app/user_components/edit-jam/editJamCtrl.js"></script>
+		<script src="app/user_components/jam/jamCtrl.js"></script>
+		<script src="app/user_components/jams/jamsListCtrl.js"></script>
+		<script src="app/user_components/main-page/mainPageCtrl.js"></script>
+		<script src="app/user_components/my-notifications/myNotificationsCtrl.js"></script>
+		<script src="app/user_components/my-profile/myProfileCtrl.js"></script>
+		<script src="app/user_components/user-profile/userProfileCtrl.js"></script>
+
+		<!-- 		Components and shared angular controllers - ADMIN -->
+		
+		<script src="app/admin_components/admin-user-list/adminUserListCtrl.js"></script>
+		<script src="app/admin_components/admin-jams-list/adminJamsListCtrl.js"></script>
 		
 	</body>
 </html>

@@ -5,16 +5,10 @@ angular.module('authService', [])
 .service('verify', function(_){
 
 	this.login = function(user){
-		
-		console.log(user)
 
-		if(_.isEmpty(user) == true)
+		if(_.isEmpty(user) == true || !user.username || !user.password)
 		{
-			return 'Uzupełnij wszystkie pola1'
-		}
-		if(!user.username || !user.password)
-		{
-			return 'Uzupełnij wszystkie pola2'
+			return 'Uzupełnij wszystkie pola'
 		}
 	}
 
@@ -23,17 +17,13 @@ angular.module('authService', [])
 
 		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-		if(_.isEmpty(user) == true)
+		if(_.isEmpty(user) == true || !user.username || !user.password || !user.repeatPass)
 		{
-			return 'Uzupełnij wszystkie pola1'
-		}
-		if(!user.username || !user.password || !user.repeatPass)
-		{
-			return 'Uzupełnij wszystkie pola2'
+			return 'Uzupełnij wszystkie pola'
 		}
 		if(re.test(user.username) == false)
 		{
-			return 'Email nie może składać się z Polskich znaków i musi zawierać @'
+			return 'Nieprawidłowy format email'
 		}
 		if(user.username.length > 30 || user.username.length < 5 || user.password.length > 30 || user.password.length < 5)
 		{
@@ -44,8 +34,4 @@ angular.module('authService', [])
 			return 'Hasła nie są zgodne'
 		}
 	};   
-
-
-
-
 });

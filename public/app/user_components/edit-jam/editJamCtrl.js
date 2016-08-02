@@ -1,4 +1,4 @@
-angular.module('editJamModule', []).controller('editJamCtrl', function($scope, $http, $rootScope, $routeParams, $location, redirect, $timeout){
+angular.module('user', []).controller('editJamCtrl', function($scope, $http, $rootScope, $routeParams, $location, redirect, $timeout){
 
 	//redirect to main page if logout
 
